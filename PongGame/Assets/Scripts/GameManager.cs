@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI TextScore2;
     public BallMovement ball;
     public PaddleMovement paddle1;
-    public PaddleMovement paddle2;
+    public PaddleP2Movement paddle2;
 
     private void Start()
     {
