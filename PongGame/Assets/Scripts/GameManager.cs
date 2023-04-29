@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public BallMovement ball;
     public PaddleMovement paddle1;
     public PaddleP2Movement paddle2;
-
+    
     private void Start()
     {
         ball.OnGoal += OnGoalDelegate;
