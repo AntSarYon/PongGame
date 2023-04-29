@@ -47,6 +47,7 @@ public class BallMovement : MonoBehaviour
 
     void Awake()
     {
+        Speed = new Vector3(4, 0, 0);
         rb = transform.GetComponent<Rigidbody2D>();
         mAS = transform.GetComponent<AudioSource>();
         volumen = 0.65f;
@@ -96,7 +97,7 @@ public class BallMovement : MonoBehaviour
                 volumen
             );
             Speed.y = UnityEngine.Random.Range(-5f, 5f);
-            Speed.x *= -1f;
+            Speed.x *= -1.025f;
         }
 
 
@@ -126,6 +127,7 @@ public class BallMovement : MonoBehaviour
 
         OnGoal?.Invoke(this, args);
 
+        Speed = new Vector3(4, 0, 0);
         transform.position = new Vector3(0f, 0f, 0f);
 
     }
