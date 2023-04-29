@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PaddleMovement : MonoBehaviour
 {
-    //Seteamos la velocidad del Paddle
-    public float Speed = 1f;
+    //Velocidad del Paddle
+    public float Speed;
 
     //Flag de Juego corriendo
     private bool running = false;
+
+    //----------------------------------------------------
+    void Awake()
+    {
+        Speed = 7f;
+    }
 
     //----------------------------------------------------
 
@@ -17,8 +23,12 @@ public class PaddleMovement : MonoBehaviour
         //Si el juego esta corriendo
         if (running)
         {
-            //Si se deecta la tecla W...
-            if(Input.GetKey(KeyCode.W)){
+            //1. Deteccion de Teclas (W o S)
+            //2. Modificación de la posición hacia Arriba o Abajo
+            //3. Limitar el Rango de movimiento del Paddle
+
+            if(Input.GetKey(KeyCode.W))
+            {
                 transform.position = new Vector3(
                     transform.position.x,
                     Mathf.Clamp(
@@ -29,19 +39,22 @@ public class PaddleMovement : MonoBehaviour
                     transform.position.z
                 );
             }
-            //Si se detecta la tecla S...
-            else if(Input.GetKey(KeyCode.S)){
+
+            else if(Input.GetKey(KeyCode.S))
+            {
+
                 transform.position = new Vector3(
                     transform.position.x,
                     Mathf.Clamp(
                         transform.position.y - Speed * Time.deltaTime,
-                        -4f,
-                        4f
+                        -4.30f,
+                        3.40f
                     ),
                     transform.position.z
                 );
             }
         }
+        //Si no está corriendo; no reconocemnos ninguna entrada.
     }
 
     //------------------------------------------------------
