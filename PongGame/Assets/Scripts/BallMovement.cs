@@ -36,7 +36,7 @@ public class BallMovement : MonoBehaviour
     //Listas de Clip de audio
     [SerializeField] private AudioSource mAS;
     [SerializeField] private AudioClip[] ClipsChoque = new AudioClip[2];
-    [SerializeField] private AudioClip[] ClipsLaser = new AudioClip[5];
+    [SerializeField] private AudioClip[] ClipsLaser = new AudioClip[12];
     [SerializeField] private AudioClip clipGoal;
 
     //Volumen
@@ -93,11 +93,11 @@ public class BallMovement : MonoBehaviour
         {
             //Reproducimos un Clip de impacto Laser Aleatorio
             mAS.PlayOneShot(
-                ClipsLaser[UnityEngine.Random.Range(0, 4)],
+                ClipsLaser[UnityEngine.Random.Range(0, 11)],
                 volumen
             );
             Speed.y = UnityEngine.Random.Range(-5f, 5f);
-            Speed.x *= -1.025f;
+            Speed.x *= -1.065f;
         }
 
 
