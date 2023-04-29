@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI TextScore1;
     public TextMeshProUGUI TextScore2;
+
     public BallMovement ball;
     public PaddleMovement paddle1;
+
     public PaddleP2Movement paddle2;
     
     private void Start()
@@ -23,6 +25,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartGame();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            GetComponent<AudioSource>().Play();
         }
     }
 
@@ -47,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         TextScore1.gameObject.SetActive(false);
         TextScore2.gameObject.SetActive(false);
+
         ball.Run();
         paddle1.Run();
         paddle2.Run();
@@ -56,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         TextScore1.gameObject.SetActive(true);
         TextScore2.gameObject.SetActive(true);
+
         ball.Stop();
         paddle1.Stop();
         paddle2.Stop();
