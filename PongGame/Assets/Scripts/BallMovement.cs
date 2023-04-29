@@ -26,7 +26,7 @@ public class BallMovement : MonoBehaviour
 {
     //Gestor del Evento OnGoal
     public event EventHandler OnGoal;
-
+    
     //Velocidad de la Bola
     public Vector3 Speed;
 
@@ -34,6 +34,7 @@ public class BallMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     //Listas de Clip de audio
+    [SerializeField] private AudioSource mAS;
     [SerializeField] private AudioClip[] ClipsChoque = new AudioClip[2];
     [SerializeField] private AudioClip[] ClipsLaser = new AudioClip[5];
     [SerializeField] private AudioClip clipGoal;
@@ -47,7 +48,8 @@ public class BallMovement : MonoBehaviour
     void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
-        volumen = 0.45f;
+        mAS = transform.GetComponent<AudioSource>();
+        volumen = 0.65f;
     }
 
     //---------------------------------------------------------------
@@ -77,11 +79,11 @@ public class BallMovement : MonoBehaviour
         if (col.transform.CompareTag("Wall"))
         {
             //Reproducimos un Clip de impacto en Pared Aleatorio
-            AudioSource.PlayClipAtPoint(
+            mAS.PlayOneShot(
                 ClipsChoque[UnityEngine.Random.Range(0, 1)],
-                new Vector3(0,0,-10),
                 volumen
             );
+
             Speed.y *= -1f;
         }
 
@@ -89,9 +91,8 @@ public class BallMovement : MonoBehaviour
         else
         {
             //Reproducimos un Clip de impacto Laser Aleatorio
-            AudioSource.PlayClipAtPoint(
+            mAS.PlayOneShot(
                 ClipsLaser[UnityEngine.Random.Range(0, 4)],
-                new Vector3(0, 0, -10),
                 volumen
             );
             Speed.y = UnityEngine.Random.Range(-5f, 5f);
@@ -106,9 +107,8 @@ public class BallMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //Reproducimos un Clip de impacto Laser Aleatorio
-        AudioSource.PlayClipAtPoint(
+        mAS.PlayOneShot(
             clipGoal,
-            new Vector3(0, 0, -10),
             volumen
         );
 
