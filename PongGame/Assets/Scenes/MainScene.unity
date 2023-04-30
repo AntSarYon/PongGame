@@ -513,6 +513,10 @@ MonoBehaviour:
   paddle1: {fileID: 960280509}
   paddle2: {fileID: 1733378405}
   paddleAI: {fileID: 1733378403}
+  clipsIA:
+  - {fileID: 8300000, guid: 1983270cf9b8b5a4aafb797942baa4fd, type: 3}
+  - {fileID: 8300000, guid: 921d26c9f41dcdb42bd88121f9ab561b, type: 3}
+  volumen: 0
 --- !u!4 &785697241
 Transform:
   m_ObjectHideFlags: 0
@@ -540,7 +544,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1983270cf9b8b5a4aafb797942baa4fd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.716
+  m_Volume: 0.85
   m_Pitch: 1
   Loop: 0
   Mute: 0

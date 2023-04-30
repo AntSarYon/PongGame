@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,11 +19,18 @@ public class GameManager : MonoBehaviour
     public PaddleP2Movement paddle2;
     public ComputerPaddle paddleAI;
 
+    [SerializeField] private AudioClip[] clipsIA = new AudioClip[2];
+    [SerializeField] private float volumen;
+
     //Flag de IA Activada
     private bool aiActivada;
 
-    //Flag para controlar la 1era ejecucion de Ctrl
-    private bool ctrlOprimido;
+    //---------------------------------------------
+
+    private void Awake()
+    {
+        volumen = 0.85f;
+    }
 
     //---------------------------------------------
 
@@ -70,6 +76,9 @@ public class GameManager : MonoBehaviour
 
                 //Actualizamos el mensaje del Texto
                 DVMessage.text = "Darth Vader esta fuera del juego";
+
+                //Reproducimos el Sable Apagandose
+                GetComponent<AudioSource>().PlayOneShot(clipsIA[1], volumen);
             }
             //Si la AI esta Desactivada
             else
@@ -88,7 +97,7 @@ public class GameManager : MonoBehaviour
                 DVMessage.text = "Darth Vader se ha unido al juego";
 
                 //Reproducimos la Respiración de Vader
-                GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().PlayOneShot(clipsIA[0], volumen);
             }
             
         }
