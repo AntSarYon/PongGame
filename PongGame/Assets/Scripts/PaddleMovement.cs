@@ -33,8 +33,8 @@ public class PaddleMovement : MonoBehaviour
                     transform.position.x,
                     Mathf.Clamp(
                         transform.position.y + Speed * Time.deltaTime,
-                        -4f,
-                        4f
+                        -4.30f,
+                        3.50f
                     ),
                     transform.position.z
                 );
@@ -48,7 +48,7 @@ public class PaddleMovement : MonoBehaviour
                     Mathf.Clamp(
                         transform.position.y - Speed * Time.deltaTime,
                         -4.30f,
-                        3.40f
+                        3.50f
                     ),
                     transform.position.z
                 );
