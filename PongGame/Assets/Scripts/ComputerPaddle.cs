@@ -26,16 +26,15 @@ public class ComputerPaddle : MonoBehaviour
     //-------------------------------------------------------------
     private void Awake()
     {
-        Speed = 7.5f;
+        Speed = 7f;
     }
 
     //------------------------------------------------------------------
 
     void Update()
     {
-        print(running);
         //Si el juego esta corriendo
-        if (running)
+        if (running == true)
         {
             //Si la Bola se dirige hacia nuestro lado...
             if (BolaRB.velocity.x > 0)
@@ -117,8 +116,43 @@ public class ComputerPaddle : MonoBehaviour
                     //Caso contrario, nos quedamos quietos
 
                 }
-            }
-        }       
+                //Si la Bola esta moviendose de frente...
+                else
+                {
+                    //Si al sumar sus alturas se obtiene un valor positivo
+                    if (BolaRB.position.y + transform.position.y > 0)
+                    {
+                        //Nos desplazamos hacia abajo
+                        transform.position = new Vector3(
+                            transform.position.x,
+                            Mathf.Clamp(
+                                transform.position.y - Speed * Time.deltaTime,
+                                -4.30f,
+                                3.50f
+                            ),
+                            transform.position.z
+                        );
+                    }
+                    //Si al sumar sus alturas se obtiene un valor negativo
+                    else if (BolaRB.position.y + transform.position.y < 0)
+                    {
+                        //Nos desplazamos hacia arriba
+                        transform.position = new Vector3(
+                            transform.position.x,
+                            Mathf.Clamp(
+                                transform.position.y + Speed * Time.deltaTime,
+                                 -4.30f,
+                                 3.50f
+                            ),
+                            transform.position.z
+                         );
+                    }
+                }
+
+                //Caso contrario, nos quedamos quietos
+
+            } 
+        }
     }
 
     //----------------------------------------------------------

@@ -40,9 +40,6 @@ public class GameManager : MonoBehaviour
         //Flag de Activación de IA inicializado en FALSE
         aiActivada = false;
 
-        //Flag indicando que aun no se ha oprimido Ctrl
-        ctrlOprimido = false;
-
         //Empezamos con el Juego detenido
         StopGame();
     }
@@ -59,8 +56,7 @@ public class GameManager : MonoBehaviour
         //Si se oprime uno de los botones Control...
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-            //Indicamos que ya se oprimió Ctrl
-            ctrlOprimido = true;
+            DVMessage.gameObject.SetActive(true);
 
             //Si la AI Esta Activada
             if (aiActivada)
@@ -71,7 +67,6 @@ public class GameManager : MonoBehaviour
 
                 //Desactivamos el Flag
                 aiActivada = false;
-                //paddleAI.Running = true;
 
                 //Actualizamos el mensaje del Texto
                 DVMessage.text = "Darth Vader esta fuera del juego";
@@ -86,16 +81,11 @@ public class GameManager : MonoBehaviour
                 //Activamos el Flag
                 aiActivada = true;
 
-                //Activamos el Flag de Running de la IA
+                //Activamos el Flag de Running de la IA manualmente
                 paddleAI.Running = true;
 
                 //Actualizamos el mensaje del Texto...
                 DVMessage.text = "Darth Vader se ha unido al juego";
-
-                if (ctrlOprimido)
-                {
-                    DVMessage.gameObject.SetActive(true);
-                }
 
                 //Reproducimos la Respiración de Vader
                 GetComponent<AudioSource>().Play();
@@ -141,7 +131,7 @@ public class GameManager : MonoBehaviour
         if (paddle2.enabled)
         {
             paddle2.Run();
-        }
+        } 
         else paddleAI.Run();
     }
 
