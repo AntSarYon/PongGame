@@ -59,48 +59,68 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
 
+        // - - - - - - - - - - - - - - - - - - - -
+
         //Si se oprime uno de los botones Control...
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
+            //Activamos el mensaje de Estado de IA
             DVMessage.gameObject.SetActive(true);
 
             //Si la AI Esta Activada
             if (aiActivada)
             {
-                //Activamos el Paddle2 y Desactivamos la IA
-                paddle2.enabled = true;
-                paddleAI.enabled = false;
-
-                //Desactivamos el Flag
-                aiActivada = false;
-
-                //Actualizamos el mensaje del Texto
-                DVMessage.text = "Darth Vader esta fuera del juego";
-
-                //Reproducimos el Sable Apagandose
-                GetComponent<AudioSource>().PlayOneShot(clipsIA[1], volumen);
+                DesactivarIA();
             }
+
+            // - - - - - - - - - -- - - - - -
+
             //Si la AI esta Desactivada
             else
             {
-                //Desactivamos el Paddle2 y Activamos la IA
-                paddle2.enabled = false;
-                paddleAI.enabled = true;
-
-                //Activamos el Flag
-                aiActivada = true;
-
-                //Activamos el Flag de Running de la IA manualmente
-                paddleAI.Running = true;
-
-                //Actualizamos el mensaje del Texto...
-                DVMessage.text = "Darth Vader se ha unido al juego";
-
-                //Reproducimos la Respiración de Vader
-                GetComponent<AudioSource>().PlayOneShot(clipsIA[0], volumen);
+                ActivarIA();
             }
             
         }
+    }
+
+    //---------------------------------------------------------
+
+    private void ActivarIA()
+    {
+        //Desactivamos el Paddle2 y Activamos la IA
+        paddle2.enabled = false;
+        paddleAI.enabled = true;
+
+        //Activamos el Flag
+        aiActivada = true;
+
+        //Activamos el Flag de Running de la IA manualmente
+        paddleAI.Running = true;
+
+        //Actualizamos el mensaje del Texto...
+        DVMessage.text = "Darth Vader se ha unido al juego";
+
+        //Reproducimos la Respiración de Vader
+        GetComponent<AudioSource>().PlayOneShot(clipsIA[0], volumen);
+    }
+
+    //---------------------------------------------------------
+
+    private void DesactivarIA()
+    {
+        //Activamos el Paddle2 y Desactivamos la IA
+        paddle2.enabled = true;
+        paddleAI.enabled = false;
+
+        //Desactivamos el Flag
+        aiActivada = false;
+
+        //Actualizamos el mensaje del Texto
+        DVMessage.text = "Darth Vader esta fuera del juego";
+
+        //Reproducimos el Sable Apagandose
+        GetComponent<AudioSource>().PlayOneShot(clipsIA[1], volumen);
     }
 
     //---------------------------------------------------------

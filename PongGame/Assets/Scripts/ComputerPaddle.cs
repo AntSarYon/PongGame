@@ -46,15 +46,7 @@ public class ComputerPaddle : MonoBehaviour
                     if (BolaRB.position.y < transform.position.y)
                     {
                         //Nos desplazamos hacia abajo
-                        transform.position = new Vector3(
-                            transform.position.x,
-                            Mathf.Clamp(
-                                transform.position.y - Speed * Time.deltaTime,
-                                -4.30f,
-                                3.50f
-                            ),
-                            transform.position.z
-                        );
+                        ControlarMovimientoHaciaAbajo();
                     }
                     //Si la Bola se encuentra en una posición superior a la nuestra
                     else if (BolaRB.position.y > transform.position.y)
@@ -63,15 +55,7 @@ public class ComputerPaddle : MonoBehaviour
                         if (Mathf.Abs(BolaRB.position.y - transform.position.y) > 1)
                         {
                             //Nos desplazamos hacia arriba
-                            transform.position = new Vector3(
-                                transform.position.x,
-                                Mathf.Clamp(
-                                    transform.position.y + Speed * Time.deltaTime,
-                                    -4.30f,
-                                    3.50f
-                                ),
-                                transform.position.z
-                            );
+                            ControlarMovimientoHaciaArriba();
                         }
 
                         //Caso contrario, nos quedamos quietos
@@ -84,15 +68,7 @@ public class ComputerPaddle : MonoBehaviour
                     if (BolaRB.position.y > transform.position.y)
                     {
                         //Nos desplazamos hacia arriba
-                        transform.position = new Vector3(
-                            transform.position.x,
-                            Mathf.Clamp(
-                                transform.position.y + Speed * Time.deltaTime,
-                                -4.30f,
-                                3.50f
-                            ),
-                            transform.position.z
-                        );
+                        ControlarMovimientoHaciaArriba();
                     }
                     //Si la Bola se encuentra en una posición inferior a la nuestra
                     else if (BolaRB.position.y < transform.position.y)
@@ -101,15 +77,7 @@ public class ComputerPaddle : MonoBehaviour
                         if (Mathf.Abs(BolaRB.position.y - transform.position.y) > 1)
                         {
                             //Nos desplazamos hacia abajo
-                            transform.position = new Vector3(
-                                transform.position.x,
-                                Mathf.Clamp(
-                                    transform.position.y - Speed * Time.deltaTime,
-                                    -4.30f,
-                                    3.50f
-                                ),
-                                transform.position.z
-                            );
+                            ControlarMovimientoHaciaAbajo();
                         }
                     }
 
@@ -123,29 +91,13 @@ public class ComputerPaddle : MonoBehaviour
                     if (BolaRB.position.y + transform.position.y > 0)
                     {
                         //Nos desplazamos hacia abajo
-                        transform.position = new Vector3(
-                            transform.position.x,
-                            Mathf.Clamp(
-                                transform.position.y - Speed * Time.deltaTime,
-                                -4.30f,
-                                3.50f
-                            ),
-                            transform.position.z
-                        );
+                        ControlarMovimientoHaciaAbajo();
                     }
                     //Si al sumar sus alturas se obtiene un valor negativo
                     else if (BolaRB.position.y + transform.position.y < 0)
                     {
                         //Nos desplazamos hacia arriba
-                        transform.position = new Vector3(
-                            transform.position.x,
-                            Mathf.Clamp(
-                                transform.position.y + Speed * Time.deltaTime,
-                                 -4.30f,
-                                 3.50f
-                            ),
-                            transform.position.z
-                         );
+                        ControlarMovimientoHaciaArriba();
                     }
                 }
 
@@ -153,6 +105,35 @@ public class ComputerPaddle : MonoBehaviour
 
             } 
         }
+    }
+
+    //----------------------------------------------------------
+    private void ControlarMovimientoHaciaArriba()
+    {
+        transform.position = new Vector3(
+            transform.position.x,
+            Mathf.Clamp(
+                transform.position.y + Speed * Time.deltaTime,
+                -4.30f,
+                3.50f
+            ),
+            transform.position.z
+        );
+    }
+
+    //----------------------------------------------------------
+
+    private void ControlarMovimientoHaciaAbajo()
+    {
+        transform.position = new Vector3(
+            transform.position.x,
+            Mathf.Clamp(
+                transform.position.y - Speed * Time.deltaTime,
+                -4.30f,
+                3.50f
+            ),
+            transform.position.z
+        );
     }
 
     //----------------------------------------------------------

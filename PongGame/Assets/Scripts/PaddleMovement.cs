@@ -29,35 +29,49 @@ public class PaddleMovement : MonoBehaviour
 
             if(Input.GetKey(KeyCode.W))
             {
-                transform.position = new Vector3(
-                    transform.position.x,
-                    Mathf.Clamp(
-                        transform.position.y + Speed * Time.deltaTime,
-                        -4.30f,
-                        3.50f
-                    ),
-                    transform.position.z
-                );
+                ControlarMovimientoHaciaArriba();
             }
 
             else if(Input.GetKey(KeyCode.S))
             {
 
-                transform.position = new Vector3(
-                    transform.position.x,
-                    Mathf.Clamp(
-                        transform.position.y - Speed * Time.deltaTime,
-                        -4.30f,
-                        3.50f
-                    ),
-                    transform.position.z
-                );
+                ControlarMovimientoHaciaAbajo();
             }
         }
         //Si no está corriendo; no reconocemnos ninguna entrada.
     }
 
     //------------------------------------------------------
+
+    private void ControlarMovimientoHaciaArriba()
+    {
+        transform.position = new Vector3(
+            transform.position.x,
+            Mathf.Clamp(
+                transform.position.y + Speed * Time.deltaTime,
+                -4.30f,
+                3.50f
+            ),
+            transform.position.z
+        );
+    }
+
+    //-------------------------------------------------------
+
+    private void ControlarMovimientoHaciaAbajo()
+    {
+        transform.position = new Vector3(
+            transform.position.x,
+            Mathf.Clamp(
+                transform.position.y - Speed * Time.deltaTime,
+                -4.30f,
+                3.50f
+            ),
+            transform.position.z
+        );
+    }
+
+    //-------------------------------------------------------
 
     public void Run() 
     {

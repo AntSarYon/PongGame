@@ -28,27 +28,11 @@ public class PaddleP2Movement : MonoBehaviour
             //3. Limitar el Rango de movimiento del Paddle
 
             if (Input.GetKey(KeyCode.UpArrow)){
-                transform.position = new Vector3(
-                    transform.position.x,
-                    Mathf.Clamp(
-                        transform.position.y + Speed * Time.deltaTime,
-                        -4.30f,
-                        3.50f
-                    ),
-                    transform.position.z
-                );
+                ControlarMovimientoHaciaArriba();
             }
 
             else if(Input.GetKey(KeyCode.DownArrow)){
-                transform.position = new Vector3(
-                    transform.position.x,
-                    Mathf.Clamp(
-                        transform.position.y - Speed * Time.deltaTime,
-                        -4.30f,
-                        3.50f
-                    ),
-                    transform.position.z
-                );
+                ControlarMovimientoHaciaAbajo();
             }
         }
         //Si no está corriendo; no reconocemnos ninguna entrada.
@@ -56,6 +40,35 @@ public class PaddleP2Movement : MonoBehaviour
 
     //----------------------------------------------------------------
 
+    private void ControlarMovimientoHaciaArriba()
+    {
+        transform.position = new Vector3(
+            transform.position.x,
+            Mathf.Clamp(
+                transform.position.y + Speed * Time.deltaTime,
+                -4.30f,
+                3.50f
+            ),
+            transform.position.z
+        );
+    }
+
+    //----------------------------------------------------------------
+
+    private void ControlarMovimientoHaciaAbajo()
+    {
+        transform.position = new Vector3(
+            transform.position.x,
+            Mathf.Clamp(
+                transform.position.y - Speed * Time.deltaTime,
+                -4.30f,
+                3.50f
+            ),
+            transform.position.z
+        );
+    }
+
+    //----------------------------------------------------------------
     public void Run()
     {
         running = true;
