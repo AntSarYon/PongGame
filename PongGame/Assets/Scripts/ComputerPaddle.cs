@@ -4,11 +4,11 @@ using UnityEngine;
 
 /*
  * RESUMEN DE FUNCIONAMIENTO:
- *  - Se hará un seguimiento de la posición  de la Bola
- *  - En abse a la posición de la bola, el Paddle se moverá hacia arriba o hacia abajo
- *  - Cuando la bola se aprxime al Paddle de la IA, este decidirá si necesita moverse hacia abajo
- *    o arriba en base a si la Bola se encuentra por debajo o encima de su posición. 
- *  - También hace un cálculo para determinar si es conveniente quedarse quieto. 
+ *  - Se harï¿½ un seguimiento de la posiciï¿½n  de la Bola
+ *  - En abse a la posiciï¿½n de la bola, el Paddle se moverï¿½ hacia arriba o hacia abajo
+ *  - Cuando la bola se aprxime al Paddle de la IA, este decidirï¿½ si necesita moverse hacia abajo
+ *    o arriba en base a si la Bola se encuentra por debajo o encima de su posiciï¿½n. 
+ *  - Tambiï¿½n hace un cï¿½lculo para determinar si es conveniente quedarse quieto. 
  */
 
 public class ComputerPaddle : MonoBehaviour
@@ -26,7 +26,7 @@ public class ComputerPaddle : MonoBehaviour
     //-------------------------------------------------------------
     private void Awake()
     {
-        Speed = 7f;
+        Speed = 4f;
     }
 
     //------------------------------------------------------------------
@@ -39,16 +39,16 @@ public class ComputerPaddle : MonoBehaviour
             //Si la Bola se dirige hacia nuestro lado...
             if (BolaRB.velocity.x > 0)
             {
-                //Si la Bola se está moviendo hacia abajo
+                //Si la Bola se estï¿½ moviendo hacia abajo
                 if (BolaRB.velocity.y < 0)
                 {
-                    //Si la Bola se encuentra en una posición inferior a la nuestra
+                    //Si la Bola se encuentra en una posiciï¿½n inferior a la nuestra
                     if (BolaRB.position.y < transform.position.y)
                     {
                         //Nos desplazamos hacia abajo
                         ControlarMovimientoHaciaAbajo();
                     }
-                    //Si la Bola se encuentra en una posición superior a la nuestra
+                    //Si la Bola se encuentra en una posiciï¿½n superior a la nuestra
                     else if (BolaRB.position.y > transform.position.y)
                     {
                         //Si la diferencia entre la altura de la Bola y la del Paddle excede a 1 unidad...
@@ -61,16 +61,16 @@ public class ComputerPaddle : MonoBehaviour
                         //Caso contrario, nos quedamos quietos
                     }
                 }
-                //Si la Bola se está moviendo hacia arriba
+                //Si la Bola se estï¿½ moviendo hacia arriba
                 else if (BolaRB.velocity.y > 0)
                 {
-                    //Si la Bola se encuentra en una posición superior a la nuestra
+                    //Si la Bola se encuentra en una posiciï¿½n superior a la nuestra
                     if (BolaRB.position.y > transform.position.y)
                     {
                         //Nos desplazamos hacia arriba
                         ControlarMovimientoHaciaArriba();
                     }
-                    //Si la Bola se encuentra en una posición inferior a la nuestra
+                    //Si la Bola se encuentra en una posiciï¿½n inferior a la nuestra
                     else if (BolaRB.position.y < transform.position.y)
                     {
                         //Si la diferencia entre la altura de la Bola y la del Paddle excede a 1 unidad...
